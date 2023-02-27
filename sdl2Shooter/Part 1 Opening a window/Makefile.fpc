@@ -1,0 +1,46 @@
+# Part 1 Opening a window
+
+[package]
+name=Part1
+version=1.0
+
+[target]
+programs=Part1
+dirs=
+
+[require]
+packages=
+
+[clean]
+files= \
+	$(wildcard $(COMPILER_UNITTARGETDIR)/*$(OEXT)) \
+	$(wildcard $(COMPILER_UNITTARGETDIR)/*$(PPUEXT)) \
+	$(wildcard $(COMPILER_UNITTARGETDIR)/*$(RSTEXT)) \
+	$(wildcard $(COMPILER_UNITTARGETDIR)/*.res) \
+	$(wildcard *$(OEXT)) $(wildcard *$(PPUEXT)) $(wildcard *$(RSTEXT))
+            
+[compiler]
+targetdir=.
+unittargetdir=./units/$(CPU_TARGET)-$(OS_TARGET)
+options=-MObjFPC -Scghi -O1 -g -gl -l -vewnhibq $(DBG_OPTIONS)
+unitdir= \
+	$(LAZARUSDIR)/../components/SDL2-for-Pascal/units \
+	/usr/local/lib \
+	.
+
+[prerules]
+DBG_OPTIONS=
+ifeq ($(OS_TARGET),darwin)
+	DBG_OPTIONS=-gw
+endif
+
+[rules]
+.PHONY: cleartarget all
+
+cleartarget:
+	-$(DEL) $(COMPILER_TARGETDIR)/Part1$(PPUEXT)
+
+all: cleartarget $(COMPILER_UNITTARGETDIR) Part1$(PPUEXT)
+
+distclean: clean
+	${DELTREE} ./units/*
