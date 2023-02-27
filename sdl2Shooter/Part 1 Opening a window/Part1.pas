@@ -1,4 +1,8 @@
-{Opening a SDL2 - Window}
+{
+  Opening a SDL2 - Window
+  author: shenchunqian
+  created: 2023-02-27
+}
 
 program Part1;
 
@@ -75,7 +79,7 @@ begin
   SDL_DestroyWindow(app.Window);
   SDL_Quit;
   if Exitcode <> 0 then
-    WriteLn(SDL_GetError());
+    writeln(SDL_GetError());
 end;
 
 // Input
