@@ -1,12 +1,11 @@
 
-# folders
-**/units/
-**/lib/
-units/
-lib/
-
-# files
 .DS_Store
 Makefile
-Part[0-9]
-Part[0-9][0-9]
+lib/
+units/
+**/lib/
+**/units/
+shooter[0-9]
+shooter[0-9][0-9]
+!shooter[0-9]/
+!shooter[0-9][0-9]/

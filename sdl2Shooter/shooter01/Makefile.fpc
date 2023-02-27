@@ -1,11 +1,11 @@
 # Part 1 Opening a window
 
 [package]
-name=Part1
+name=shooter01
 version=1.0
 
 [target]
-programs=Part1
+programs=shooter01
 dirs=
 
 [require]
@@ -38,9 +38,9 @@ endif
 .PHONY: cleartarget all
 
 cleartarget:
-	-$(DEL) $(COMPILER_TARGETDIR)/Part1$(PPUEXT)
+	-$(DEL) $(COMPILER_TARGETDIR)/shooter01$(PPUEXT)
 
-all: cleartarget $(COMPILER_UNITTARGETDIR) Part1$(PPUEXT)
+all: cleartarget $(COMPILER_UNITTARGETDIR) shooter01$(PPUEXT)
 
 distclean: clean
 	${DELTREE} ./units/*
