@@ -1,15 +1,11 @@
-{
-  Opening a SDL2 - Window
-  without momory holes; testet with: fpc -Criot -gl -gh shooter01.pas
-}
+{Opening a SDL2 - Window}
 
 program Part1;
 
-{$MODE FPC}
-{$H+} {"$H+" necessary for conversion of String to PChar !!; H+ => AnsiString}
-{$COPERATORS OFF}
+{$mode objfpc}
+{$H+}
 
-uses CRT, SDL2;
+uses SDL2;
 
 const
   SCREEN_WIDTH = 1280; {size of the grafic window}
@@ -42,7 +38,8 @@ end;
 // INIT SDL
 
 procedure initSDL;
-var rendererFlags, windowFlags: integer;
+var
+  rendererFlags, windowFlags: integer;
 begin
   rendererFlags := SDL_RENDERER_PRESENTVSYNC or SDL_RENDERER_ACCELERATED;
   windowFlags := 0;
@@ -72,7 +69,7 @@ begin
   end;
 end;
 
-procedure AtExit;
+procedure atExit;
 begin
   SDL_DestroyRenderer(app.Renderer);
   SDL_DestroyWindow(app.Window);
@@ -90,18 +87,15 @@ begin
     case event.Type_ of
       SDL_QUITEV:
         exitLoop := TRUE; {close Window}
-      SDL_MOUSEBUTTONDOWN:
-        exitLoop := TRUE; {if Mousebutton pressed}
-    end;  {case event}
-  end;    {SDL_PollEvent}
+    end;
+  end;
 end;
 
 // MAIN
 
 begin
-  ClrScr;
   InitSDL;
-  AddExitProc(@AtExit);
+  AddExitProc(@atExit);
   exitLoop := FALSE;
 
   while exitLoop = FALSE do
@@ -112,5 +106,5 @@ begin
     SDL_Delay(16);
   end;
 
-  AtExit;
+  atExit;
 end.
